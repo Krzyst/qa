@@ -54,6 +54,11 @@
             <version>2.16.1</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-maven</artifactId>
+            <version>2.10.0</version>
+        </dependency>
 
 
     </dependencies>
@@ -73,6 +78,14 @@
                     <target>8</target>
                 </configuration>
             </plugin>
+            <plugin>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-maven</artifactId>
+            <version>2.10.0</version>
+            <configuration>
+                <reportVersion>2.16.1</reportVersion>
+            </configuration>
+        </plugin>
         </plugins>
     </build>
 </project>
