@@ -1,33 +1,40 @@
 pipeline {
     agent any
+
     triggers {
         cron('40 15 * * *')
-        }
+    }
+
+    parameters {
+        choice(name: 'TAG', choices: ['junit', 'smoke', 'noparam', 'param', 'string', 'zadania', 'nested'], description: 'Choose tag.')
+        choice(name: 'EX_TAG', choices: ['junit', 'smoke', 'noparam', 'param', 'string', 'zadania', 'nested'], description: 'Choose tag.')
+    }
+
     stages {
         stage('checkout') {
-        steps {
-            git url: 'https://github.com/Krzyst/qa.git',
-            branch: 'develop'
-         }
+            steps {
+                git branch: 'develop', url: 'https://github.com/Krzyst/qa.git'
+            }
         }
         stage('build') {
-        steps {
-            sh 'mvn clean test'
+            steps {
+                sh "mvn clean test -Dgroups=${params.TAG} -DexcludedGroups=${params.EX_TAG} -pl qajunit"
             }
         }
     }
-    post {
-           always {
-               allure([
-                        includeProperties: false,
-                        jdk: '',
-                        properties: [[key: 'allure.issues.tracker.pattern', value: 'http://tracker.company.com/%s'],
-                        [key: 'allure.tests.management.pattern', value: 'http://tms.company.com/%s'],
-                        ],
-                        reportBuildPolicy: 'ALWAYS',
-                        results: [[path: 'qajunit/target/allure-results']]
-               ])
 
-           }
-       }
+    post {
+        always {
+            allure([
+                     includeProperties: false,
+                     jdk: '',
+                     properties: [[key: 'allure.issues.tracker.pattern', value: 'http://tracker.company.com/%s'],
+                     [key: 'allure.tests.management.pattern', value: 'http://tms.company.com/%s'],
+                     ],
+                     reportBuildPolicy: 'ALWAYS',
+                     results: [[path: 'qajunit/target/allure-results']]
+            ])
+
+        }
+    }
 }
