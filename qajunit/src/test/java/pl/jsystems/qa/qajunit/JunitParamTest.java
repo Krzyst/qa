@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.EnumSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import static com.google.common.truth.Truth.assertThat;
 
@@ -43,4 +44,15 @@ public class JunitParamTest {
         Assert.assertEquals(number % 5, 0);
     }
 
+    @DisplayName("Parameter Enum Test")
+    @ParameterizedTest(name = "Enum test: {0}")
+    @EnumSource(value = ParamEnum.class)
+    public void stringParamTest(ParamEnum param) {
+        assertThat(param.toString()).contains("ENUM");
+    }
+
+    enum ParamEnum {
+        ENUM_ONE,
+        ENUM_TWO
+    }
 }
