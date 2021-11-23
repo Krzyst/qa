@@ -22,7 +22,7 @@ public class JunitParamTest {
     }
 
     @ParameterizedTest(name = "Parameter test for string say hello")
-    @ValueSource(strings = {"Hello","Hello junit","Helo students"})
+    @ValueSource(strings = {"Hello","Hello junit","Hello students"})
     public void stringParamTest(String param) {
         assertThat(param).contains("Hello");
     }
