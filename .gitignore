@@ -13,3 +13,4 @@ qajunit/target/generated-test-sources/
 !/Test Results - JunitTest_zad1.html
 Test Results - JunitParamTest.html
 Test Results - JunitParamTest_firstParamTest.html
+/qajunit/.allure/
