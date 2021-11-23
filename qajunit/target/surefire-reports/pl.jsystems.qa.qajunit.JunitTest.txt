@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: pl.jsystems.qa.qajunit.JunitTest
 -------------------------------------------------------------------------------
-Tests run: 12, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 0.017 s - in pl.jsystems.qa.qajunit.JunitTest
+Tests run: 12, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 0.077 s - in pl.jsystems.qa.qajunit.JunitTest
