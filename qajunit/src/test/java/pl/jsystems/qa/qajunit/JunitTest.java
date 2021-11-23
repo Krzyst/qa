@@ -17,7 +17,7 @@
     import static org.junit.jupiter.api.Assertions.*;
 
     @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-    @Tags({@Tag("junit"), @Tag("smoke"), @Tag("noparam test")})
+    @Tags({@Tag("junit"), @Tag("smoke"), @Tag("noparam")})
     @DisplayName("Junit tests")
     public class JunitTest {
 
@@ -164,7 +164,7 @@
 
             @DisplayName("zadanie1")
             @Test
-            public void zad1() {
+            public void zadanie1() {
                 String resultString = "Wordpress powers 100% of the internet";
                 String expectedString = "Wordpress powers [number]% of the internet";
 
