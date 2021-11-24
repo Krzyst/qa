@@ -36,7 +36,7 @@ public class GuiConfig {
 //            e.printStackTrace();
 //        }
 //
-    //    driver = new FirefoxDriver();
+     //   driver = new FirefoxDriver();
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);

@@ -3,6 +3,7 @@ package pl.jsystems.qa.qagui;
 import org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -20,6 +21,9 @@ public class GuiTest extends GuiConfig{
     public void lgInTest() {
         driver.get("https://wordpress.com/");
         driver.findElement(By.linkText("Log In")).click();
+
+
+
         driver.findElement(By.id("usernameOrEmail")).click();
         driver.findElement(By.id("usernameOrEmail")).clear();
         driver.findElement(By.id("usernameOrEmail")).sendKeys("automation112021");
@@ -43,9 +47,12 @@ public class GuiTest extends GuiConfig{
     public void logInTest() {
         driver.get("https://wordpress.com/");
         driver.findElement(By.linkText("Log In")).click();
-        driver.findElement(By.id("usernameOrEmail")).clear();
-        driver.findElement(By.id("usernameOrEmail")).click();
-        driver.findElement(By.id("usernameOrEmail")).sendKeys("krzyst");
+
+        final WebElement usernameOrEmail = driver.findElement(By.id("usernameOrEmail"));
+        usernameOrEmail.clear();
+        usernameOrEmail.click();
+        usernameOrEmail.sendKeys("krzyst");
+
         driver.findElement(By.className("login__form-action")).click();
 
         Wait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
