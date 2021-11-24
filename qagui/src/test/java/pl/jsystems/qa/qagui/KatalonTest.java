@@ -12,53 +12,27 @@ import java.net.URISyntaxException;
 import java.nio.file.Paths;
 import java.util.concurrent.TimeUnit;
 
-public class KatalonTest {
+public class KatalonTest extends GuiConfig {
 
-    private WebDriver driver;
 
-    @BeforeEach
-    public void setUp() {
-
-        try {
-            System.setProperty("webdriver.gecko.driver", Paths.get(getClass().getClassLoader()
-                    .getResource("drivers/geckodriver.exe").toURI()).toFile().getAbsolutePath());
-
-//            System.setProperty("webdriver.chrome.driver", Paths.get(getClass().getClassLoader()
-//                    .getResource("drivers/chromedriver.exe").toURI()).toFile().getAbsolutePath());
-
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
-
-        driver = new FirefoxDriver();
-//        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-        driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
-        driver.manage().deleteAllCookies();
-        driver.manage().window().maximize();
-
-    }
 
     @Test
     public void testUntitledTestCase() throws Exception {
         driver.get("https://wordpress.com/");
-        driver.findElement(By.linkText("Log In")).click();
-        driver.findElement(By.id("usernameOrEmail")).click();
-        driver.findElement(By.id("usernameOrEmail")).clear();
-        driver.findElement(By.id("usernameOrEmail")).sendKeys("krzyst");
-        driver.findElement(By.xpath("//button[@type='submit']")).click();
-        driver.findElement(By.id("password")).click();
-        driver.findElement(By.id("password")).clear();
-        driver.findElement(By.id("password")).sendKeys("TestSelenium");
-        driver.findElement(By.xpath("//button[@type='submit']")).click();
-        driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Nowy wpis'])[1]/following::*[name()='svg'][1]")).click();
-        driver.findElement(By.xpath("//div[@id='secondary']/ul/li/div[2]/button")).click();
-        //ERROR: Caught exception [unknown command []]
+//        driver.findElement(By.linkText("Log In")).click();
+//        driver.findElement(By.id("usernameOrEmail")).click();
+//        driver.findElement(By.id("usernameOrEmail")).clear();
+//        driver.findElement(By.id("usernameOrEmail")).sendKeys("krzyst");
+//        driver.findElement(By.xpath("//button[@type='submit']")).click();
+//        driver.findElement(By.id("password")).click();
+//        driver.findElement(By.id("password")).clear();
+//        driver.findElement(By.id("password")).sendKeys("TestSelenium");
+//        driver.findElement(By.xpath("//button[@type='submit']")).click();
+//        driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Nowy wpis'])[1]/following::*[name()='svg'][1]")).click();
+//        driver.findElement(By.xpath("//div[@id='secondary']/ul/li/div[2]/button")).click();
+//        //ERROR: Caught exception [unknown command []]
     }
 
-        @AfterEach
-    public void tearDown() {
-        driver.quit();
-        }
+
 
 }
