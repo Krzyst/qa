@@ -3,6 +3,12 @@ package pl.jsystems.qa.qagui;
 import org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+
 import static com.google.common.truth.Truth.assertThat;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -41,6 +47,10 @@ public class GuiTest extends GuiConfig{
         driver.findElement(By.id("usernameOrEmail")).click();
         driver.findElement(By.id("usernameOrEmail")).sendKeys("krzyst");
         driver.findElement(By.className("login__form-action")).click();
+
+        Wait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+       wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("password")));
+
         driver.findElement(By.id("password")).clear();
         driver.findElement(By.id("password")).click();
         driver.findElement(By.id("password")).sendKeys("TestSelenium");
