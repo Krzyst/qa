@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Tags({@Tag("FrontEnd"), @Tag("smoke")})
 @DisplayName("Frontend test")
-public class GuiTest extends GuiConfig {
+public class GuiTest extends GuiConfiguration {
 
     @Tag("Login")
     @DisplayName("login test")

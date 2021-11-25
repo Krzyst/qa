@@ -1,18 +1,9 @@
 package pl.jsystems.qa.qagui;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
-import java.net.URISyntaxException;
-import java.nio.file.Paths;
-import java.util.concurrent.TimeUnit;
-
-public class KatalonTest extends GuiConfig {
+public class KatalonTest extends GuiConfiguration {
 
 
 

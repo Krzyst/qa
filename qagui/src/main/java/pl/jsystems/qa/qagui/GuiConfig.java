@@ -17,4 +17,6 @@ public class GuiConfig {
     public static final String MACHINE = CONFIG.getString("machine");
     public static final String REMOTE_URL = CONFIG.getString("remoteUrl");
 
+
+
 }

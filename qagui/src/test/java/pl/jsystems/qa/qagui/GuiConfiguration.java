@@ -12,7 +12,7 @@ import java.net.URISyntaxException;
 import java.nio.file.Paths;
 import java.util.concurrent.TimeUnit;
 
-public class GuiConfig {
+public class GuiConfiguration {
     protected WebDriver driver;
 
     @BeforeAll
