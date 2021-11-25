@@ -1,8 +1,9 @@
 @BDD
 Feature: User Login
 
-  @Login @worspress @userpanel
+  @Login @wordpress @userpanel
   Scenario: Login
     Given User starts on main page
-    When User logs to user panel
+    When user logs to the user panel
     Then User can modify user profile
+    And User logs out
