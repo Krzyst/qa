@@ -1,8 +1,6 @@
 package pl.jsystems.qa.qagui;
 
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -14,14 +12,19 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import pl.jsystems.qa.qagui.page.*;
 
 import java.time.Duration;
+import java.util.Set;
 
 import static com.google.common.truth.Truth.assertThat;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class GuiTest extends GuiConfig{
+@Tags({@Tag("FrontEnd"), @Tag("smoke")})
+@DisplayName("Frontend test")
+public class GuiTest extends GuiConfig {
 
-
+    @Tag("Login")
+    @DisplayName("login test")
     @Test
     public void lgInTest() {
         driver.get("https://wordpress.com/");
@@ -70,6 +73,8 @@ public class GuiTest extends GuiConfig{
     MyProfilePage myProfilePage;
     NotificationPage notificationPage;
 
+    @Tag("Login")
+    @DisplayName("login test, cleaned")
     @Test
     public void lgIn() {
         driver.get("https://wordpress.com/");
@@ -93,6 +98,8 @@ public class GuiTest extends GuiConfig{
 
     }
 
+    @Tag("Notification")
+    @DisplayName("Notification")
     @Test
     public void notification() {
         driver.get("https://wordpress.com/");
@@ -123,6 +130,7 @@ public class GuiTest extends GuiConfig{
 
     }
 
+    @Tag("Keys_Action")
     @DisplayName("Keys short")
     @Test
     public void kaysInteraction() {
@@ -134,6 +142,7 @@ public class GuiTest extends GuiConfig{
 
     }
 
+    @Tag("Keys_Action")
     @DisplayName("Simple action")
     @Test
     public void actionTest() {
@@ -152,12 +161,6 @@ public class GuiTest extends GuiConfig{
                 .click();
         action.build().perform();
 
-
-
-    }
-
-
-    private void assertFalse(boolean selected) {
     }
 
     private void logIn() {
@@ -171,6 +174,7 @@ public class GuiTest extends GuiConfig{
         loginPage.passConfirmButton.click();
     }
 
+    @Tag("Scroll")
     @DisplayName("scroll")
     @Test
     public void pageScroll() {
@@ -197,6 +201,7 @@ public class GuiTest extends GuiConfig{
         driver.findElement(By.linkText("Open page in the same window")).click();
     }
 
+    @Tag("Scroll")
     @Test
     void scrollIntoView(){
         driver.get("http://manos.malihu.gr/repository/custom-scrollbar/demo/examples/complete_examples.html");
@@ -206,7 +211,7 @@ public class GuiTest extends GuiConfig{
 
         je.executeScript("arguments[0].scrollIntoView(true);", element);
     }
-
+    @Tag("Alert")
     @Disabled
     @DisplayName("alert")
     @Test
@@ -225,6 +230,8 @@ public class GuiTest extends GuiConfig{
         assertThat(title).isEqualTo("title");
     }
 
+    @Tag("Frame")
+    @DisplayName("Frame")
     @Test
     public void frameTest(){
         String contactUrl = "http://www.testdiary.com/training/selenium/selenium-test-page/";
@@ -250,6 +257,62 @@ public class GuiTest extends GuiConfig{
         driver.switchTo().parentFrame();
     }
 
+    @Tags({@Tag("Window"), @Tag("scroll")})
+    @DisplayName("Window test")
+    @Test
+    public void windowTest() {
+
+        String firstPageWindow = null;
+        String secondWindow = null;
+
+        String urlDiary = "http://www.testdiary.com/training/selenium/selenium-test-page/";
+
+        String openWindow = "Open page in a new window";
+        By openWindowLink = By.linkText(openWindow);
+
+        driver.navigate().to(urlDiary);
+
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(openWindowLink));
+
+
+        WebElement hyperlinkElement = driver.findElement(openWindowLink);
+
+        firstPageWindow = driver.getWindowHandle();
+
+        int hyperlinkElementYCoord = hyperlinkElement.getLocation().getY();
+        int hyperlinkElementXCoord = hyperlinkElement.getLocation().getX();
+
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+
+        jsExecutor.executeScript("window.scrollBy(" + hyperlinkElementXCoord + "," + hyperlinkElementYCoord + ")", "");
+
+        wait.until(ExpectedConditions.elementToBeClickable(openWindowLink));
+
+        hyperlinkElement.click();
+
+        Set<String> windowHandles = driver.getWindowHandles();
+
+        for (String window: windowHandles) {
+            if (!firstPageWindow.equals(window)){
+                secondWindow = window;
+            }
+        }
+
+        driver.switchTo().window(secondWindow);
+
+        System.out.println(secondWindow.toString());
+        System.out.println(firstPageWindow.toString());
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("testpagelink")));
+
+        driver.switchTo().window(secondWindow).close();
+        driver.switchTo().window(firstPageWindow);
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(openWindowLink));
+
+
+    }
 
 
     @Test
