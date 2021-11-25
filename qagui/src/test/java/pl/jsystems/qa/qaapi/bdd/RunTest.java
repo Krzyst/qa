@@ -1,4 +1,4 @@
-package pl.jsystems.qa.qagui.bdd;
+package pl.jsystems.qa.qaapi.bdd;
 
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;

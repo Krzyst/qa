@@ -1,4 +1,4 @@
-package pl.jsystems.qa.qagui.classic;
+package pl.jsystems.qa.qaapi.classic;
 
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
@@ -9,7 +9,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pl.jsystems.qa.qagui.classic.page.*;
+import pl.jsystems.qa.qaapi.classic.page.*;
 
 import java.time.Duration;
 import java.util.Set;
@@ -18,7 +18,7 @@ import static com.google.common.truth.Truth.assertThat;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static pl.jsystems.qa.qagui.GuiConfig.*;
+import static pl.jsystems.qa.qaapi.GuiConfig.*;
 
 @Tags({@Tag("FrontEnd"), @Tag("smoke")})
 @DisplayName("Frontend test")

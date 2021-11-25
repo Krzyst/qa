@@ -1,4 +1,4 @@
-package pl.jsystems.qa.qagui.bdd.steps;
+package pl.jsystems.qa.qaapi.bdd.steps;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -7,7 +7,6 @@ import org.openqa.selenium.WebDriver;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static pl.jsystems.qa.qagui.GuiConfig.BASE_URL;
 
 public class ParamCucumberSteps {
 

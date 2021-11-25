@@ -1,19 +1,17 @@
-package pl.jsystems.qa.qagui.bdd.steps;
+package pl.jsystems.qa.qaapi.classic;
 
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
-import io.cucumber.java.Scenario;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.OutputType;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.Platform;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import pl.jsystems.qa.qagui.GuiConfig;
+import pl.jsystems.qa.qaapi.GuiConfig;
 
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
@@ -21,21 +19,26 @@ import java.net.URL;
 import java.nio.file.Paths;
 import java.time.Duration;
 
-public class ConfigStep {
+public class GuiConfiguration {
 
     protected WebDriver driver;
 
-    @Before
-    public void setUp() {
+    @BeforeAll
+    public static void setUpAll() {
         WebDriverManager.chromedriver().setup();
         WebDriverManager.edgedriver().setup();
         WebDriverManager.firefoxdriver().setup();
     }
 
-    public WebDriver setUpWebDriver() {
+    @BeforeEach
+    public void setUp() {
+//        driver = new FirefoxDriver();
+//        driver = new EdgeDriver();
+//        driver = new ChromeDriver();
+
         setUpMachine();
         confDriver();
-        return driver;
+
     }
 
     private void setUpMachine() {
@@ -52,9 +55,9 @@ public class ConfigStep {
     }
 
     private void setUpRemoteDriver() {
+        DesiredCapabilities desiredCapabilities;
         try {
-            driver = new RemoteWebDriver(new URL(GuiConfig.REMOTE_URL),
-                    new DesiredCapabilities(GuiConfig.BROWSER, "", Platform.LINUX));
+            driver = new RemoteWebDriver(new URL(GuiConfig.REMOTE_URL),new DesiredCapabilities(GuiConfig.BROWSER,"", Platform.LINUX));
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -109,22 +112,8 @@ public class ConfigStep {
         }
     }
 
-    @After
-    public void tearDown(Scenario scenario) {
-        System.out.println("=========================== @After Cucumber Test  =======================================");
-        String status;
-        if(!scenario.isFailed()) {
-            status = "( ͡° ͜ʖ ͡°)";
-//            status = "++++++++++";
-            scenario.log("Scenario passed");
-        } else {
-            status = "(✖╭╮✖)";
-//            status = "-------------";
-            scenario.attach(((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES),"images/png", scenario.getName());
-            scenario.log("Scenario failed");
-        }
-        System.out.println("\n"+status+" End of: " + scenario.getName() + " scenario.");
+    @AfterEach
+    public void tearDown() {
         driver.quit();
-        driver = null;
     }
 }

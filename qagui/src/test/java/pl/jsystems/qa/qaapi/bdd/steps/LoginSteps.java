@@ -1,16 +1,16 @@
-package pl.jsystems.qa.qagui.bdd.steps;
+package pl.jsystems.qa.qaapi.bdd.steps;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
-import pl.jsystems.qa.qagui.classic.page.*;
+import pl.jsystems.qa.qaapi.classic.page.*;
 
 import static com.google.common.truth.Truth.assertThat;
 import static org.junit.Assert.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static pl.jsystems.qa.qagui.GuiConfig.*;
+import static pl.jsystems.qa.qaapi.GuiConfig.*;
 
 public class LoginSteps {
 

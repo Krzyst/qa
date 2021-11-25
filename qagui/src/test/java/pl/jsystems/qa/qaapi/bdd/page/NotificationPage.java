@@ -1,4 +1,4 @@
-package pl.jsystems.qa.qagui.classic.page;
+package pl.jsystems.qa.qaapi.bdd.page;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
