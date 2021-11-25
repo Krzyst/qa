@@ -14,7 +14,7 @@ pipeline {
     stages {
         stage('checkout') {
             steps {
-                git branch: 'develop', url: 'https://github.com/Test112021/qa'
+                git branch: 'develop', url: 'https://github.com/Krzyst/qa.git'
             }
         }
         stage('build') {
