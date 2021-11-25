@@ -7,7 +7,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -18,7 +17,6 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Paths;
 import java.time.Duration;
-import java.util.concurrent.TimeUnit;
 
 public class GuiConfiguration {
 
@@ -38,7 +36,7 @@ public class GuiConfiguration {
 //        driver = new ChromeDriver();
 
         setUpMachine();
-        setUpDriver();
+        confDriver();
 
     }
 
@@ -68,7 +66,7 @@ public class GuiConfiguration {
         driver = setWebDriver();
     }
 
-    private void setUpDriver() {
+    private void confDriver() {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
         driver.manage().deleteAllCookies();
